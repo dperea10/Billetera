@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<definitions xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:tns="urn:arnleadservicewsdl"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             targetNamespace="urn:servicewalletwsdl">
+
+    <types>
+        <xsd:schema targetNamespace="urn:walletwsdl">
+            <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+            <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/" />
+        </xsd:schema>
+    </types>
+
+    <message name="conwalletRequest">
+        <part name="document" type="xsd:string" />
+        <part name="movil" type="xsd:string" />
+       
+
+    </message>
+
+    <message name="conwalletResponse">
+        <part name="response" type="xsd:string" />
+    </message>
+
+    <portType name="walletwsdlPortType">
+        <operation name="conwallet">
+            <documentation>Wallet</documentation>
+            <input message="tns:conwalletRequest"/>
+            <output message="tns:conwalletResponse"/>
+        </operation>
+    </portType>
+
+    <binding name="walletwsdlBinding" type="tns:walletwsdlPortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="conwallet">
+            <soap:operation soapAction="urn:arnleadservicewsdl#conwallet" style="rpc"/>
+
+            <input>
+                <soap:body use="encoded" namespace="urn:walletwsdl"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+
+            <output>
+                <soap:body use="encoded" namespace="urn:walletwsdl"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+    </binding>
+
+    <service name="walletwsdl">
+        <port name="walletwsdlPort" binding="tns:walletwsdlBinding">
+            <soap:address location="http://wallet.pt.com/wallet/soap/consult" />
+        </port>
+    </service>
+</definitions>

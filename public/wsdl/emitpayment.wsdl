@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<definitions xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:tns="urn:arnleadservicewsdl"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             targetNamespace="urn:servicepaymentwsdl">
+
+    <types>
+        <xsd:schema targetNamespace="urn:paymentwsdl">
+            <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+            <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/" />
+        </xsd:schema>
+    </types>
+
+    <message name="emitpaymentRequest">
+        <part name="document" type="xsd:string" />
+        <part name="value" type="xsd:string" />
+        <part name="email" type="xsd:string" />
+    </message>
+
+    <message name="emitpaymentResponse">
+        <part name="response" type="xsd:string" />
+    </message>
+
+    <portType name="paymentwsdlPortType">
+        <operation name="emitpayment">
+            <documentation>Payment</documentation>
+            <input message="tns:emitpaymentRequest"/>
+            <output message="tns:emitpaymentResponse"/>
+        </operation>
+    </portType>
+
+    <binding name="paymentwsdlBinding" type="tns:paymentwsdlPortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="emitpayment">
+            <soap:operation soapAction="urn:arnleadservicewsdl#emitpayment" style="rpc"/>
+
+            <input>
+                <soap:body use="encoded" namespace="urn:paymentwsdl"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+
+            <output>
+                <soap:body use="encoded" namespace="urn:paymentwsdl"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+    </binding>
+
+    <service name="paymentwsdl">
+        <port name="paymentwsdlPort" binding="tns:paymentwsdlBinding">
+            <soap:address location="http://wallet.pt.com/payment/soap/consult" />
+        </port>
+    </service>
+</definitions>
