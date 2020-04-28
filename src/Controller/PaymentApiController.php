@@ -11,15 +11,15 @@ class PaymentApiController extends FOSRestController {
 
 
     /**
-     * @Rest\Post("/api/payment/payment")
+     * @Rest\Post("/api/payment/emite")
      */
-    public function emitPaymen( Request $request) {
+    public function emitPayment( Request $request) {
 
         set_time_limit(0);
         ini_set("memory_limit", -1);
 
-        $client = new nusoap_client('http://'.$_SERVER['HTTP_HOST'].'/index.php/payment/soap/payment?wsdl', 'wsdl');
-        $client->setEndpoint('http://'.$_SERVER['HTTP_HOST'].'/index.php/payment/soap/payment');
+        $client = new nusoap_client('http://'.$_SERVER['HTTP_HOST'].'/Walletpt/public/index.php/payment/soap/emite?wsdl', 'wsdl');
+        $client->setEndpoint('http://'.$_SERVER['HTTP_HOST'].'/Walletpt/public/index.php/payment/soap/emite');
 
         $client->decode_utf8 = true;
 
@@ -57,8 +57,8 @@ class PaymentApiController extends FOSRestController {
         set_time_limit(0);
         ini_set("memory_limit", -1);
 
-        $client = new nusoap_client('http://'.$_SERVER['HTTP_HOST'].'/index.php/payment/soap/confirm?wsdl', 'wsdl');
-        $client->setEndpoint('http://'.$_SERVER['HTTP_HOST'].'/index.php/payment/soap/confirm');
+        $client = new nusoap_client('http://'.$_SERVER['HTTP_HOST'].'/Walletpt/public/index.php/payment/soap/confirm?wsdl', 'wsdl');
+        $client->setEndpoint('http://'.$_SERVER['HTTP_HOST'].'/Walletpt/public/index.php/payment/soap/confirm');
 
         $client->decode_utf8 = true;
 

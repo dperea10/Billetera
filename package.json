@@ -1,0 +1,30 @@
+{
+  "name": "walletpt",
+  "version": "1.0.0",
+  "description": "walletpt",
+  "main": "public/index.js",
+  "dependencies": {
+    "bootstrap": "^4.4.1",
+    "express": "^4.17.1",
+    "strong-soap": "^2.0.0"
+  },
+  "devDependencies": {
+    "babel-preset-react": "^6.24.1",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dperea10/Billetera.git"
+  },
+  "author": "Diego Perea",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dperea10/Billetera/issues"
+  },
+  "homepage": "https://github.com/dperea10/Billetera#readme"
+}

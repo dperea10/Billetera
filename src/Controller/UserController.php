@@ -18,7 +18,7 @@ class UserController extends AbstractController
     public function createUser(Request $request, ServiceUser $serviceUser)
     {
 
-        $soapServer = new \SoapServer($this->get('kernel')->getProjectDir() . '/public/wsdl/user.wsdl');
+        $soapServer = new \SoapServer('http://'.$_SERVER['HTTP_HOST'].'/Walletpt/public/wsdl/user.wsdl');
 
         $soapServer->setObject($serviceUser);
 

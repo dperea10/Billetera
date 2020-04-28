@@ -13,15 +13,13 @@ use App\Service\ServicePayment;
 class PaymentController extends AbstractController
 {
     /**
-     * @Route("/payment/soap/payment")
+     * @Route("/payment/soap/emite",name="emite")
      */
     public function emitPayment(Request $request, ServicePayment $servicePayment)
     {
 
-        $soapServer = new \SoapServer($this->get('kernel')->getProjectDir().'/public/wsdl/emitpayment.wsdl');
-
+        $soapServer = new \SoapServer('http://'.$_SERVER['HTTP_HOST'].'/Walletpt/public/wsdl/emitpayment.wsdl');
         $soapServer->setObject($servicePayment);
-
         $response = new Response();
         $response->headers->set('Content-Type', 'text/xml:text/xml; charset=UTF-8');
 
@@ -34,12 +32,12 @@ class PaymentController extends AbstractController
 
     }
     /**
-     * @Route("/payment/soap/confim")
+     * @Route("/payment/soap/confirm")
      */
     public function confirmPayment(Request $request, ServicePayment $servicePayment)
     {
 
-        $soapServer = new \SoapServer('http://'.$_SERVER['HTTP_HOST'].'/wsdl/confirmpayment.wsdl');
+        $soapServer = new \SoapServer('http://'.$_SERVER['HTTP_HOST'].'/Walletpt/public/wsdl/confirmpayment.wsdl');
 
         $soapServer->setObject($servicePayment);
 

@@ -54,7 +54,7 @@
 
     <service name="walletwsdl">
         <port name="walletwsdlPort" binding="tns:walletwsdlBinding">
-            <soap:address location="http://wallet.pt.com/wallet/soap/recharge" />
+            <soap:address location="http://localhost:85/Walletpt/public/wallet/soap/recharge" />
         </port>
     </service>
 </definitions>

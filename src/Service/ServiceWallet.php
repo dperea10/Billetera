@@ -22,8 +22,8 @@ class ServiceWallet
          */
 
         $response = array('success' => false,
-            'cod_error' => '',
-            'message_error' => '');
+            'cod_error' => '22',
+            'message_error' => 'error');
         if($document != null && $movil != null && $value!= null){
             try{
 
@@ -68,7 +68,7 @@ class ServiceWallet
                 $validateMovil =$this->em->getRepository('App:User\User')->validateUserMovil($movil);
                 if($validateDocument && $validateMovil){
                     $serUser =   $serUser  = $this->em->getRepository('App:User\User')->findOneBy(array('document'=>$document));
-                    $balance = $serUser->getWalletRel()->getBalance();
+                    $balance = $serUser->getWallet_Ur()->getBalance();
                     $response['success'] = true;
                     $response['cod_error'] = '';
                     $response['message_error'] = '';

@@ -16,7 +16,7 @@ class ServiceUser
         $this->em = $entityManager;
     }
 
-    public function createUser($names, $document, $email, $movil)
+    public function createUser($document, $names, $movil, $email )
     {
 
 
@@ -31,15 +31,16 @@ class ServiceUser
                     if($this->em->getRepository('App:User\User')->validateUserEmail($email) || $this->em->getRepository('App:User\User')->validateUserDocument($document) ){
                         $response['success'] = false;
                         $response['cod_error'] = 416;
-                        $response['message_error'] = 'El correo o el documento ya existe, verifique';
+                        $response['message_error'] = 'Vefique el correo o el telefono, los ingresados ya existen';
                     } else {
-                        $serUser->setNames($names);
-                        $serUser->setEmail($email);
+                       
                         $serUser->setDocument($document);
+                        $serUser->setNames($names);
                         $serUser->setMovil($movil);
+                        $serUser->setEmail($email);
                         $this->em->persist($serUser);
-                        $serWallet->setUserRel($serUser);
-                        $serWallet->setBalance(2500000);
+                        $serWallet->setUserPayment_Ur($serUser);
+                        $serWallet->setBalance(0);
                         $this->em->persist($serWallet);
                         $this->em->flush();
                         $response['success'] = true;

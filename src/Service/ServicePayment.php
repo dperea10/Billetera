@@ -28,7 +28,7 @@ class ServicePayment
         $response = array('success' => false,
             'cod_error' => '',
             'message_error' => '');
-        if($document != null && $value != null && $email != null){
+        if($document != null && $email != null && $value != null){
 
             try{
 
@@ -41,10 +41,10 @@ class ServicePayment
                     $serWallet  = $this->em->getRepository("App:Wallet\Wallet")->findBy(array('user_id'=>$serUser[0]->getId()));
 
                     $serPayment = new Payment();
-                    $token = $this->generarToken();
-                    $serPayment->setWalletRel($serWallet[0]);
+                    $token = $this->createToken();
+                    $serPayment->setWallet_Ur($serWallet[0]);
                     $serPayment->setValue($value);
-                    $serPayment->setConfirm(false);
+                    $serPayment->setConfirm_Trans(false);
                     $serPayment->setToken($token);
                     $this->em->persist($serPayment);
                     $this->em->flush();
@@ -97,12 +97,12 @@ class ServicePayment
                                 $response['cod_error'] = 417;
                                 $response['message_error'] = 'Disculpe, no posee el fondo suficiente!';
                             } else {
-                                if(!$serPayment[0]->getConfirm()){
-                                    $serPayment[0]->setConfirm(true);
+                                if(!$serPayment[0]->getConfirm_Trans()){
+                                    $serPayment[0]->setConfirm_Trans(true);
                                     $valuePayment = $serPayment[0]->getValue();
                                     $balance_Tod = $serWallet[0]->getBalance();
                                     $balance_Tod -= $valuePayment;
-                                    $serWallet[0]->getBalance($balance_Tod);
+                                    $serWallet[0]->setBalance($balance_Tod);
                                     $this->em->persist($serWallet[0]);
                                     $this->em->flush();
                                     $response['success'] = true;
@@ -141,9 +141,9 @@ class ServicePayment
         return json_encode($response);
    }
 
-    private function generarToken(){
+    private function createToken(){
 
-        $letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $letters = 'abcdefghijklmnoprstwywABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $digits = '1234567890';
         $randomString = '';
         for ($i = 0; $i < 3; $i++) {
@@ -157,8 +157,8 @@ class ServicePayment
     }
 
     private function sendemail($email, $token){
-            $message = ( new \Swift_Message( 'ingrese el token para confirmar' ) )
-            ->setFrom( 'diego.perea.dp@gmail.com' )
+            $message = ( new \Swift_Message( 'Con este token continuara su transaccion' ) )
+            ->setFrom( ['soporte03maracaibo@gmail.com' => 'Soporte Walletpt'] )
             ->setTo( $email )
             ->setBody(
                 $token,

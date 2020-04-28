@@ -55,7 +55,7 @@ class UserRepository extends ServiceEntityRepository
         }
     }
 
-    public function serUserDocument($id){
+    public function serUserDocumentId($id){
         $em = $this->getEntityManager();
         $serUser = $em->getRepository('App:User\User')->findBy(array('document'=>$id));
         if($serUser){

@@ -40,7 +40,7 @@ class User
     private $email;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Wallet\Wallet", mappedBy="UserPayment_Ur")
+     * @ORM\OneToOne(targetEntity="App\Entity\Wallet\Wallet", mappedBy="userPayment_Ur")
      */
     private $wallet_Ur;
 

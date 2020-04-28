@@ -52,7 +52,7 @@
 
     <service name="paymentwsdl">
         <port name="paymentwsdlPort" binding="tns:paymentwsdlBinding">
-            <soap:address location="http://wallet.pt.com/payment/soap/consult" />
+            <soap:address location="http://localhost:85/Walletpt/public/index.php/payment/soap/confirm" />
         </port>
     </service>
 </definitions>

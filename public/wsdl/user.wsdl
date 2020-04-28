@@ -17,10 +17,10 @@
     </types>
 
     <message name="userRequest">
-        <part name="names" type="xsd:string" />
-        <part name="movil" type="xsd:string" />
-        <part name="email" type="xsd:string" />
         <part name="document" type="xsd:string" />
+        <part name="names" type="xsd:string" />    
+        <part name="movil" type="xsd:string" />
+         <part name="email" type="xsd:string" />
     </message>
 
     <message name="userResponse">
@@ -54,7 +54,7 @@
 
     <service name="userwsdl">
         <port name="userwsdlPort" binding="tns:userwsdlBinding">
-            <soap:address location="http://wallet.pt.com/index.php/user/soap"/>
+            <soap:address location="http://localhost:85/Walletpt/public/index.php/user/soap"/>
         </port>
     </service>
 </definitions>

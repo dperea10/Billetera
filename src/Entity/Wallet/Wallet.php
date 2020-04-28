@@ -24,6 +24,7 @@ class Wallet
     /**
      * @ORM\Column(name="user_id", type="integer", nullable=false)
      */
+
     private $user_id;
 
      /**

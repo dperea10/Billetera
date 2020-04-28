@@ -18,8 +18,8 @@
 
     <message name="emitpaymentRequest">
         <part name="document" type="xsd:string" />
-        <part name="value" type="xsd:string" />
         <part name="email" type="xsd:string" />
+        <part name="value" type="xsd:string" />
     </message>
 
     <message name="emitpaymentResponse">
@@ -53,7 +53,7 @@
 
     <service name="paymentwsdl">
         <port name="paymentwsdlPort" binding="tns:paymentwsdlBinding">
-            <soap:address location="http://wallet.pt.com/payment/soap/consult" />
+            <soap:address location="http://localhost:85/Walletpt/public/index.php/payment/soap/emite" />
         </port>
     </service>
 </definitions>

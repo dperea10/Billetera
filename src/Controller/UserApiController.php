@@ -20,8 +20,8 @@ class UserApiController extends FOSRestController {
         set_time_limit(0);
         ini_set("memory_limit", -1);
 
-        $client = new nusoap_client('http://'.$_SERVER['HTTP_HOST'].'/index.php/user/soap?wsdl', 'wsdl');
-        $client->setEndpoint('http://'.$_SERVER['HTTP_HOST'].'/index.php/user/soap');
+        $client = new nusoap_client('http://'.$_SERVER['HTTP_HOST'].'/Walletpt/public/index.php/user/soap?wsdl', 'wsdl');
+        $client->setEndpoint('http://'.$_SERVER['HTTP_HOST'].'/Walletpt/public/index.php/user/soap');
 
         $client->decode_utf8 = true;
 

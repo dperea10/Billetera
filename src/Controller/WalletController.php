@@ -14,12 +14,12 @@ use App\Service\ServiceWallet;
 class WalletController extends AbstractController
 {
      /**
-     * @Route("/wallet/soap/recharge")
+     * @Route("/wallet/soap/recharge",name="rechargeWallet")
      */
     public function regWallet(Request $request, ServiceWallet $serviceWallet)
     {
 
-        $soapServer = new \SoapServer($this->get('kernel')->getProjectDir().'/public/wsdl/wallet.wsdl');
+        $soapServer = new \SoapServer('http://'.$_SERVER['HTTP_HOST'].'/Walletpt/public/wsdl/wallet.wsdl');
 
         $soapServer->setObject($serviceWallet);
 
@@ -35,12 +35,12 @@ class WalletController extends AbstractController
 
     }
     /**
-     * @Route("/wallet/soap/consult")
+     * @Route("/wallet/soap/consult",name="consultWallet")
      */
     public function conWallet(Request $request, ServiceWallet $serviceWallet)
     {
 
-        $soapServer = new \SoapServer('http://'.$_SERVER['HTTP_HOST'].'/wsdl/conwallet.wsdl');
+        $soapServer = new \SoapServer('http://'.$_SERVER['HTTP_HOST'].'/Walletpt/public/wsdl/conwallet.wsdl');
 
         $soapServer->setObject($serviceWallet);
 

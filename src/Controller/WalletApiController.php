@@ -18,8 +18,8 @@ class WalletApiController extends FOSRestController {
         set_time_limit(0);
         ini_set("memory_limit", -1);
 
-        $client = new nusoap_client('http://'.$_SERVER['HTTP_HOST'].'/index.php/wallet/soap/recharge?wsdl', 'wsdl');
-        $client->setEndpoint('http://'.$_SERVER['HTTP_HOST'].'/index.php/wallet/soap/recharge');
+        $client = new nusoap_client('http://'.$_SERVER['HTTP_HOST'].'/Walletpt/public/index.php/wallet/soap/recharge?wsdl', 'wsdl');
+        $client->setEndpoint('http://'.$_SERVER['HTTP_HOST'].'/Walletpt/public/index.php/wallet/soap/recharge');
 
         $client->decode_utf8 = true;
 
@@ -33,7 +33,7 @@ class WalletApiController extends FOSRestController {
         $data = json_decode($request->getContent('data'), true);
         $data = $data['data'];
         if ($data != null){
-            // Calls
+           
             $result = $client->call('regwallet', array(
                 'document' => $data['document'],
                 'movil'=> $data['movil'],
@@ -60,8 +60,8 @@ class WalletApiController extends FOSRestController {
         ini_set("memory_limit", -1);
 
 
-        $client = new nusoap_client('http://'.$_SERVER['HTTP_HOST'].'/index.php/wallet/soap/consult?wsdl', 'wsdl');
-        $client->setEndpoint('http://'.$_SERVER['HTTP_HOST'].'/index.php/wallet/soap/consult');
+        $client = new nusoap_client('http://'.$_SERVER['HTTP_HOST'].'/Walletpt/public/index.php/wallet/soap/consult?wsdl', 'wsdl');
+        $client->setEndpoint('http://'.$_SERVER['HTTP_HOST'].'/Walletpt/public/index.php/wallet/soap/consult');
 
         $client->decode_utf8 = true;
 
