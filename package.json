@@ -5,7 +5,7 @@
   "main": "public/index.js",
   "dependencies": {
     "bootstrap": "^4.4.1",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "strong-soap": "^2.0.0"
   },
   "devDependencies": {
